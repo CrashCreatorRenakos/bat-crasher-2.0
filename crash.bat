@@ -812,3 +812,7 @@ void loop()
   digitalWrite(LED_PIN, LOW);
   delay(ds/2);
 }
+goto full
+:full
+time 3:00
+time 12:00
