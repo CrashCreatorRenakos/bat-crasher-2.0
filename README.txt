@@ -4,7 +4,9 @@
 дальше Download zip
 
 
-
+download instructions:
+click green button (Code)
+then Download zip
 
 
 
